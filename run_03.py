@@ -29,7 +29,7 @@ from lib.Transformer import *
 from lib.utils_01 import *
 
 # from lib.FairGcnOt_02 import * 
-from lib.FairGcnOt_03 import * 
+from lib.ModelWrapper import * 
 
 # https://towardsdatascience.com/graph-attention-networks-in-python-975736ac5c0c
 
