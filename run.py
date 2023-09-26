@@ -190,9 +190,6 @@ else:
 # setup logging
 LOGGER_NAME = 'CV'
 LOG_FILEPATH = ('log/'+SOURCE+'__'+TARGET)
-if args.continue_previous == 0: 
-    if os.path.exists(LOG_FILEPATH):
-        shutil.rmtree(LOG_FILEPATH)
 LOG_FILENAME = f'/main__{NOW_STR}.log'
 LOG = setupLogging(LOGGER_NAME,LOG_FILEPATH,LOG_FILEPATH+LOG_FILENAME)
 
@@ -200,7 +197,6 @@ LOG.info(f'====={" FILE SETUP " :=<85}')
 LOG.info(f'SOURCE: {SOURCE}')
 LOG.info(f'TARGET: {TARGET}')
 LOG.info(f'DEVICE: {DEVICE}')
-LOG.info(f'continue_previous: {args.continue_previous}')
 LOG.info(f'====={" DONE FILE SETUP " :=<85}')
 
 LOG.info(f'====={" LOGGING INITAL VALUES " :=<85}')
