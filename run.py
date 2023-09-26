@@ -54,8 +54,6 @@ TO_VALIDATE = False
 FAIR = True
 USE_PPMI = True
 
-TRANSFORMATION = 'ot_pretrain' if (args.optimal_transport == 1) else 'None'
-TRANSFORMATION = 'ppmi' if (USE_PPMI) else TRANSFORMATION
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -191,8 +189,7 @@ else:
 
 # setup logging
 LOGGER_NAME = 'CV'
-LOG_FILEPATH = ('log/'+TRANSFORMATION+'/'+SOURCE+'__'+TARGET)
-# if TRANSFORMATION != 'None': LOG_FILEPATH += '_'+TRANSFORMATION
+LOG_FILEPATH = ('log/'+SOURCE+'__'+TARGET)
 if args.continue_previous == 0: 
     if os.path.exists(LOG_FILEPATH):
         shutil.rmtree(LOG_FILEPATH)
