@@ -467,12 +467,10 @@ class ModelWrapper():
         else: #default to training
             mask = self.data.train_mask.clone().detach().cpu().numpy()
         
-        micro_f1 = f1_score(y[mask], pred_np[mask], average='micro')
-        self.log.info(f'{mask_set} micro f1: {micro_f1}')
-        macro_f1 = f1_score(y[mask], pred_np[mask], average='macro')
-        self.log.info(f'{mask_set} macro f1: {macro_f1}')
+        f1 = f1_score(y[mask], pred_np[mask])
+        self.log.info(f'{mask_set} f1: {f1}')
 
-        return macro_f1, micro_f1
+        return f1
     
     def get_fair(self,pred_np,y,mask_set='train',priv_group=1, pos_label=1):
         if mask_set == 'test':
