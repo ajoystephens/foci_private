@@ -22,7 +22,7 @@ from sklearn.metrics import confusion_matrix, multilabel_confusion_matrix
 # from torch_geometric.nn import GCNConv, GATConv, GATv2Conv
 import sys
 import os
-from lib.Models_03 import *
+from lib.Models import *
 from lib.Transformer import *
 from lib.utils_01 import *
 
