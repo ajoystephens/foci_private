@@ -213,10 +213,8 @@ LOG.info(f'====={" DONE LOGGING INITAL VALUES " :=<85}')
 ###############################################################################
 
 results={
-    'train_macro':[],
-    'test_macro':[],
-    'train_micro':[],
-    'test_micro':[],
+    'train_f1':[],
+    'test_f1':[],
     'train_sp':[],
     'test_sp':[],
     'train_eo':[],
@@ -274,19 +272,16 @@ for seed in SEEDS:
     pred, label = model_wrapper.test()
 
     # save results
-    test_macro_f1, test_micro_f1 = model_wrapper.get_f1(pred,label,mask_set='test')
+    test_f1 = model_wrapper.get_f1(pred,label,mask_set='test')
     test_sp, test_eo = model_wrapper.get_fair(pred,label,mask_set='test',
                                               priv_group=PRIV_GROUP, pos_label=POS_LABEL)
-    train_macro_f1, train_micro_f1 = model_wrapper.get_f1(pred,label,mask_set='train')
+    train_f1 = model_wrapper.get_f1(pred,label,mask_set='train')
     train_sp, train_eo = model_wrapper.get_fair(pred,label,mask_set='train',
                                               priv_group=PRIV_GROUP, pos_label=POS_LABEL)
 
 
-    results['train_macro'].append(train_macro_f1)
-    results['test_macro'].append(test_macro_f1)
-
-    results['train_micro'].append(train_micro_f1)
-    results['test_micro'].append(test_micro_f1)
+    results['train_f1'].append(train_f1)
+    results['test_f1'].append(test_f1)
 
     results['train_sp'].append(train_sp)
     results['test_sp'].append(test_sp)
@@ -295,11 +290,8 @@ for seed in SEEDS:
     results['test_eo'].append(test_eo)
 
 
-    LOG.info(f'train macro: {train_macro_f1}')
-    LOG.info(f'test macro: {test_macro_f1}')
-
-    LOG.info(f'train micro: {train_micro_f1}')
-    LOG.info(f'test micro: {test_micro_f1}')
+    LOG.info(f'train f1: {train_f1}')
+    LOG.info(f'test f1: {test_f1}')
 
     LOG.info(f'train stat par: {train_sp}')
     LOG.info(f'test stat par: {test_sp}')
